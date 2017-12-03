@@ -32,6 +32,12 @@ SOURCES += \
     Qt-AES-master/qaesencryption.cpp \
     decryptionwindow.cpp \
     main.cpp \
+    mainwindow.cpp \
+    Qt-AES-master/unit_test/aestest.cpp \
+    Qt-AES-master/main.cpp \
+    Qt-AES-master/qaesencryption.cpp \
+    decryptionwindow.cpp \
+    main.cpp \
     mainwindow.cpp
 
 HEADERS += \
@@ -40,6 +46,11 @@ HEADERS += \
     Qt-AES-master/unit_test/aestest.h \
     Qt-AES-master/qaesencryption.h \
     decryptionwindow.h \
+    mainwindow.h \
+    Qt-AES-master/unit_test/aestest.h \
+    Qt-AES-master/qaesencryption.h \
+    decryptionwindow.h \
+    kriptiranje.h \
     mainwindow.h
 
 FORMS += \

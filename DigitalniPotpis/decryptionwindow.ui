@@ -40,14 +40,14 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
+            <widget class="QLineEdit" name="txtFilePath"/>
+           </item>
+           <item>
             <widget class="QPushButton" name="btnFilePath">
              <property name="text">
               <string>Otvori...</string>
              </property>
             </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="txtFilePath"/>
            </item>
           </layout>
          </item>

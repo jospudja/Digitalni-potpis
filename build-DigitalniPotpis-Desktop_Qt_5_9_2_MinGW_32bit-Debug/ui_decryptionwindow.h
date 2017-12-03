@@ -18,7 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -30,14 +30,17 @@ class Ui_DecryptionWindow
 public:
     QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout_2;
-    QRadioButton *radioButton_2;
-    QRadioButton *radioButton;
-    QHBoxLayout *horizontalLayout_3;
-    QPushButton *btnFilePath;
-    QLineEdit *txtFilePath;
+    QTabWidget *tabWidget;
+    QWidget *tab_2;
+    QWidget *tab_aes;
+    QGridLayout *gridLayout_2;
     QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_3;
+    QLineEdit *txtFilePath;
+    QPushButton *btnFilePath;
     QTextBrowser *txtSadrzajDatoteke;
     QTextBrowser *txtKriptiraniSadrzajDatoteke;
+    QWidget *tab_3;
 
     void setupUi(QWidget *DecryptionWindow)
     {
@@ -48,51 +51,60 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        radioButton_2 = new QRadioButton(DecryptionWindow);
-        radioButton_2->setObjectName(QStringLiteral("radioButton_2"));
 
-        horizontalLayout_2->addWidget(radioButton_2);
+        gridLayout->addLayout(horizontalLayout_2, 1, 0, 1, 1);
 
-        radioButton = new QRadioButton(DecryptionWindow);
-        radioButton->setObjectName(QStringLiteral("radioButton"));
-
-        horizontalLayout_2->addWidget(radioButton);
-
-
-        gridLayout->addLayout(horizontalLayout_2, 0, 0, 1, 1);
-
+        tabWidget = new QTabWidget(DecryptionWindow);
+        tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QStringLiteral("tab_2"));
+        tabWidget->addTab(tab_2, QString());
+        tab_aes = new QWidget();
+        tab_aes->setObjectName(QStringLiteral("tab_aes"));
+        gridLayout_2 = new QGridLayout(tab_aes);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        btnFilePath = new QPushButton(DecryptionWindow);
-        btnFilePath->setObjectName(QStringLiteral("btnFilePath"));
-
-        horizontalLayout_3->addWidget(btnFilePath);
-
-        txtFilePath = new QLineEdit(DecryptionWindow);
+        txtFilePath = new QLineEdit(tab_aes);
         txtFilePath->setObjectName(QStringLiteral("txtFilePath"));
 
         horizontalLayout_3->addWidget(txtFilePath);
 
+        btnFilePath = new QPushButton(tab_aes);
+        btnFilePath->setObjectName(QStringLiteral("btnFilePath"));
 
-        gridLayout->addLayout(horizontalLayout_3, 1, 0, 1, 1);
+        horizontalLayout_3->addWidget(btnFilePath);
 
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        txtSadrzajDatoteke = new QTextBrowser(DecryptionWindow);
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
+        txtSadrzajDatoteke = new QTextBrowser(tab_aes);
         txtSadrzajDatoteke->setObjectName(QStringLiteral("txtSadrzajDatoteke"));
 
         verticalLayout->addWidget(txtSadrzajDatoteke);
 
-        txtKriptiraniSadrzajDatoteke = new QTextBrowser(DecryptionWindow);
+        txtKriptiraniSadrzajDatoteke = new QTextBrowser(tab_aes);
         txtKriptiraniSadrzajDatoteke->setObjectName(QStringLiteral("txtKriptiraniSadrzajDatoteke"));
 
         verticalLayout->addWidget(txtKriptiraniSadrzajDatoteke);
 
 
-        gridLayout->addLayout(verticalLayout, 2, 0, 1, 1);
+        gridLayout_2->addLayout(verticalLayout, 0, 0, 1, 1);
+
+        tabWidget->addTab(tab_aes, QString());
+        tab_3 = new QWidget();
+        tab_3->setObjectName(QStringLiteral("tab_3"));
+        tabWidget->addTab(tab_3, QString());
+
+        gridLayout->addWidget(tabWidget, 0, 0, 1, 1);
 
 
         retranslateUi(DecryptionWindow);
+
+        tabWidget->setCurrentIndex(1);
+
 
         QMetaObject::connectSlotsByName(DecryptionWindow);
     } // setupUi
@@ -100,9 +112,13 @@ public:
     void retranslateUi(QWidget *DecryptionWindow)
     {
         DecryptionWindow->setWindowTitle(QApplication::translate("DecryptionWindow", "Form", Q_NULLPTR));
-        radioButton_2->setText(QApplication::translate("DecryptionWindow", "Nedekriptirana datoteka", Q_NULLPTR));
-        radioButton->setText(QApplication::translate("DecryptionWindow", "Kriptirana datoteka", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("DecryptionWindow", "SHA 256", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        tab_aes->setToolTip(QApplication::translate("DecryptionWindow", "<html><head/><body><p>AES</p></body></html>", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         btnFilePath->setText(QApplication::translate("DecryptionWindow", "Otvori...", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_aes), QApplication::translate("DecryptionWindow", "AES", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("DecryptionWindow", "RSA", Q_NULLPTR));
     } // retranslateUi
 
 };
