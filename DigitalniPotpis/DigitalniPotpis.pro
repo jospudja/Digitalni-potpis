@@ -26,11 +26,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    decryptionwindow.cpp
+    decryptionwindow.cpp \
+    Qt-AES-master/unit_test/aestest.cpp \
+    Qt-AES-master/main.cpp \
+    Qt-AES-master/qaesencryption.cpp \
+    decryptionwindow.cpp \
+    main.cpp \
+    mainwindow.cpp
 
 HEADERS += \
         mainwindow.h \
-    decryptionwindow.h
+    decryptionwindow.h \
+    Qt-AES-master/unit_test/aestest.h \
+    Qt-AES-master/qaesencryption.h \
+    decryptionwindow.h \
+    mainwindow.h
 
 FORMS += \
         mainwindow.ui \
